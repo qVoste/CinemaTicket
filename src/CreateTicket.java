@@ -4,13 +4,14 @@ import java.util.Random;
 
 public class CreateTicket {
     static String movieTicket, dateTicket, idTicket;
-//данные билета
+    //данные билета
     public CreateTicket(String movieTicket, String dateTicket) {
-        this.movieTicket = movieTicket;
-        this.dateTicket = dateTicket;
-        this.idTicket = randomIdTicket();
+        CreateTicket.movieTicket = movieTicket;
+        CreateTicket.dateTicket = dateTicket;
+        idTicket = randomIdTicket();
     }
-//создание уникального айди билета
+
+    //создание уникального айди билета
     private static String randomIdTicket(){
         String character = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
         Random random = new Random();
@@ -21,20 +22,23 @@ public class CreateTicket {
         }
      return id.toString();
     }
-//получение инфы о бронировке билета
+
+    //получение инфы о бронировке билета
     public static void getInfoTicket(){
         System.out.println("Билет забронирован)");
         System.out.println(" Дата: " + dateTicket);
         System.out.println(" Фильм: "+ movieTicket);
         System.out.println(" Уникальный айди билета: " + idTicket);
     }
-//инфа для записи в файл
+
+    //инфа для записи в файл
     public String getTicketInfo(){
         return "Дата: " + dateTicket + "\nФильм: "+ movieTicket + "\nУникальный айди билета: " + idTicket;
     }
-//запись в файл
+
+    //запись в файл
     public static void writeToFile(String tickets) {
-        try (FileWriter writer = new FileWriter("tickets.txt", true)) {
+        try (FileWriter writer = new FileWriter("src/tickets.txt", true)) {
             writer.write(tickets + "\n\n");  // Добавляем билет в файл
         } catch (IOException e) {
             System.out.println("Произошла ошибка при записи в файл: " + e.getMessage());
